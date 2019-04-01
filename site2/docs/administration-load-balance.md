@@ -1,10 +1,10 @@
 ---
-id: administration-load-distribution
-title: Pulsar load distribution
-sidebar_label: Load distribution
+id: administration-load-balance
+title: Pulsar load balance
+sidebar_label: Load balance
 ---
 
-## Load distribution across Pulsar brokers
+## Load balance across Pulsar brokers
 
 Pulsar is an horizontally scalable messaging system, so it is a core requirement that the traffic
 in a logical cluster must be spread across all the available Pulsar brokers, as evenly as possible.
@@ -20,20 +20,19 @@ context to understand how the traffic is managed in Pulsar.
 Topics are dynamically assigned to brokers based on the load conditions of all brokers in the
 cluster.
 
-When a clients starts using new topics that are not assigned to any broker, it will trigger a
-process that, given the load conditions, it will choose the best suited broker to acquire ownership
-of such topic.
+When a client starts using new topics that are not assigned to any broker, a
+process is triggered to choose the best suited broker to acquire ownership
+of these topics according to the load conditions. 
 
-In case of partitioned topics, different partitions might be assigned to different brokers. We talk
-about "topic" in this context to mean either a non-partitioned topic or one partition of a topic.
+In case of partitioned topics, different partitions are assigned to different brokers. Here "topic" means either a non-partitioned topic or one partition of a topic.
 
-The assignment is "dynamic" because it can change very quickly. For example, if the broker owning
+The assignment is "dynamic" because it changes quickly. For example, if the broker owning
 the topic crashes, the topic will be reassigned immediately to another broker. Another scenario is
-that the broker owning the topic becomes overloaded. In this case too, the topic will be
+that the broker owning the topic becomes overloaded. In this case, the topic is
 reassigned to a less loaded broker.
 
-The dynamic assignment is made possible by the stateless nature of brokers. This also ensure that
-we can quickly expand or shrink the cluster based on usage.
+The dynamic assignment is made possible by the stateless nature of brokers, so you can 
+quickly expand or shrink the cluster based on usage.
 
 ### Assignment granularity
 
