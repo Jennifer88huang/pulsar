@@ -1,0 +1,82 @@
+***************
+*** 128,147 ****
+  
+  | Config property                         | Supported | Notes                                                                         |
+  |:----------------------------------------|:----------|:------------------------------------------------------------------------------|
+- | `acks`                                  | Ignored   | Durability and quorum writes are configured at the namespace level            |
+- | `auto.offset.reset`                     | Yes       | Will have a default value of `latest` if user does not give specific setting. |
+  | `batch.size`                            | Ignored   |                                                                               |
+- | `block.on.buffer.full`                  | Yes       | If true it will block producer, otherwise give error                          |
+- | `bootstrap.servers`                     | Yes       | Needs to point to a single Pulsar service URL                                 |
+  | `buffer.memory`                         | Ignored   |                                                                               |
+  | `client.id`                             | Ignored   |                                                                               |
+- | `compression.type`                      | Yes       | Allows `gzip` and `lz4`. No `snappy`.                                         |
+- | `connections.max.idle.ms`               | Yes       | Only support up to 2,147,483,647,000(Integer.MAX_VALUE * 1000) ms of idle time|
+  | `interceptor.classes`                   | Ignored   |                                                                               |
+  | `key.serializer`                        | Yes       |                                                                               |
+- | `linger.ms`                             | Yes       | Controls the group commit time when batching messages                         |
+  | `max.block.ms`                          | Ignored   |                                                                               |
+- | `max.in.flight.requests.per.connection` | Ignored   | In Pulsar ordering is maintained even with multiple requests in flight        |
+  | `max.request.size`                      | Ignored   |                                                                               |
+  | `metric.reporters`                      | Ignored   |                                                                               |
+  | `metrics.num.samples`                   | Ignored   |                                                                               |
+--- 127,146 ----
+  
+  | Config property                         | Supported | Notes                                                                         |
+  |:----------------------------------------|:----------|:------------------------------------------------------------------------------|
++ | `acks`                                  | Ignored   | Durability and quorum writes are configured at the namespace level.            |
++ | `auto.offset.reset`                     | Yes       | If a user does not specify the setting, the default value is `latest`. |
+  | `batch.size`                            | Ignored   |                                                                               |
++ | `block.on.buffer.full`                  | Yes       | When the property is set to `true`, it blocks producer; otherwise, an error is displayed.                          |
++ | `bootstrap.servers`                     | Yes       | Points to a single Pulsar service URL.                                 |
+  | `buffer.memory`                         | Ignored   |                                                                               |
+  | `client.id`                             | Ignored   |                                                                               |
++ | `compression.type`                      | Yes       | The `gzip` and `lz4` types are allowed. The `snappy` type is not allowed.                                         |
++ | `connections.max.idle.ms`               | Yes       | Supports up to 2,147,483,647,000(Integer.MAX_VALUE * 1000) ms of idle time.|
+  | `interceptor.classes`                   | Ignored   |                                                                               |
+  | `key.serializer`                        | Yes       |                                                                               |
++ | `linger.ms`                             | Yes       | Controls the time of group commit when dealing with messages in a batch.                         |
+  | `max.block.ms`                          | Ignored   |                                                                               |
++ | `max.in.flight.requests.per.connection` | Ignored   | In Pulsar, ordering is maintained with multiple requests in flight.        |
+  | `max.request.size`                      | Ignored   |                                                                               |
+  | `metric.reporters`                      | Ignored   |                                                                               |
+  | `metrics.num.samples`                   | Ignored   |                                                                               |
+***************
+*** 193,210 ****
+  | `void close(long timeout, TimeUnit unit)`                                                               | Yes       |       |
+  | `void wakeup()`                                                                                         | No        |       |
+  
+- Properties:
+  
+  | Config property                 | Supported | Notes                                                 |
+  |:--------------------------------|:----------|:------------------------------------------------------|
+- | `group.id`                      | Yes       | Maps to a Pulsar subscription name                    |
+  | `max.poll.records`              | Ignored   |                                                       |
+- | `max.poll.interval.ms`          | Ignored   | Messages are "pushed" from broker                     |
+  | `session.timeout.ms`            | Ignored   |                                                       |
+  | `heartbeat.interval.ms`         | Ignored   |                                                       |
+- | `bootstrap.servers`             | Yes       | Needs to point to a single Pulsar service URL         |
+  | `enable.auto.commit`            | Yes       |                                                       |
+- | `auto.commit.interval.ms`       | Ignored   | With auto-commit, acks are sent immediately to broker |
+  | `partition.assignment.strategy` | Ignored   |                                                       |
+  | `auto.offset.reset`             | Ignored   |                                                       |
+  | `fetch.min.bytes`               | Ignored   |                                                       |
+--- 192,209 ----
+  | `void close(long timeout, TimeUnit unit)`                                                               | Yes       |       |
+  | `void wakeup()`                                                                                         | No        |       |
+  
++ The following table lists configuration properties.
+  
+  | Config property                 | Supported | Notes                                                 |
+  |:--------------------------------|:----------|:------------------------------------------------------|
++ | `group.id`                      | Yes       | Maps to a Pulsar subscription name.                    |
+  | `max.poll.records`              | Ignored   |                                                       |
++ | `max.poll.interval.ms`          | Ignored   | Messages are "pushed" from a broker.                     |
+  | `session.timeout.ms`            | Ignored   |                                                       |
+  | `heartbeat.interval.ms`         | Ignored   |                                                       |
++ | `bootstrap.servers`             | Yes       | Points to a single Pulsar service URL.         |
+  | `enable.auto.commit`            | Yes       |                                                       |
++ | `auto.commit.interval.ms`       | Ignored   | With auto-commit, acknowledges are sent immediately to a broker. |
+  | `partition.assignment.strategy` | Ignored   |                                                       |
+  | `auto.offset.reset`             | Ignored   |                                                       |
+  | `fetch.min.bytes`               | Ignored   |                                                       |
