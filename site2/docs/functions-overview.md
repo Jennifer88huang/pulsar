@@ -8,9 +8,9 @@ sidebar_label: Overview
 
 * consume messages from one or more Pulsar topics,
 * apply a user-supplied processing logic to each message,
-* publish the results of the computation to another topic
+* publish the results of the computation to another topic.
 
-Here's an example Pulsar Function for Java (using the [native interface](functions-api.md#java-native-functions)):
+The following is a Pulsar Functions example for Java (using the [native interface](functions-api.md#java-native-functions)):
 
 ```java
 import java.util.Function;
@@ -21,18 +21,18 @@ public class ExclamationFunction implements Function<String, String> {
 }
 ```
 
-Here's an equivalent function in Python (also using the [native interface](functions-api.md#python-native-functions)):
+The following is an equivalent function in Python (also using the [native interface](functions-api.md#python-native-functions)):
 
 ```python
 def process(input):
     return "{0}!".format(input)
 ```
 
-Functions are executed each time a message is published to the input topic. If a function is listening on the topic `tweet-stream`, for example, then the function would be run each time a message is published to that topic.
+Functions are executed each time a message is published to the input topic. For example, if a function is listening to the `tweet-stream` topic, the function runs each time a message is published to that topic.
 
 ## Goals
 
-The core goal behind Pulsar Functions is to enable you to easily create processing logic of any level of complexity without needing to deploy a separate neighboring system (such as [Apache Storm](http://storm.apache.org/), [Apache Heron](https://apache.github.io/incubator-heron), [Apache Flink](https://flink.apache.org/), etc.). Pulsar Functions is essentially ready-made compute infrastructure at your disposal as part of your Pulsar messaging system. This core goal is tied to a series of other goals:
+The core goal behind Pulsar Functions is to enable you to easily create processing logic of any level of complexity without needing to deploy a separate neighboring system (such as [Apache Storm](http://storm.apache.org/), [Apache Heron](https://apache.github.io/incubator-heron), [Apache Flink](https://flink.apache.org/)). Pulsar Functions is essentially ready-made compute infrastructure at your disposal as part of your Pulsar messaging system. The core goal is tied to a series of other goals:
 
 * Developer productivity ([language-native](#language-native-functions) vs. [Pulsar Functions SDK](#the-pulsar-functions-sdk) functions)
 * Easy troubleshooting
@@ -40,21 +40,19 @@ The core goal behind Pulsar Functions is to enable you to easily create processi
 
 ## Inspirations
 
-The Pulsar Functions feature was inspired by (and takes cues from) several systems and paradigms:
+Pulsar Functions are inspired by (and takes cues from) several systems and paradigms:
 
 * Stream processing engines such as [Apache Storm](http://storm.apache.org/), [Apache Heron](https://apache.github.io/incubator-heron), and [Apache Flink](https://flink.apache.org)
 * "Serverless" and "Function as a Service" (FaaS) cloud platforms like [Amazon Web Services Lambda](https://aws.amazon.com/lambda/), [Google Cloud Functions](https://cloud.google.com/functions/), and [Azure Cloud Functions](https://azure.microsoft.com/en-us/services/functions/)
 
-Pulsar Functions could be described as
-
-* [Lambda](https://aws.amazon.com/lambda/)-style functions that are
-* specifically designed to use Pulsar as a message bus
+Pulsar Functions can be described as **[Lambda](https://aws.amazon.com/lambda/)-style functions** that are
+**specifically designed to use Pulsar as a message bus**.
 
 ## Programming model
 
 The core programming model behind Pulsar Functions is very simple:
 
-* Functions receive messages from one or more **input [topics](reference-terminology.md#topic)**. Every time a message is received, the function can do a variety of things:
+* Functions receive messages from one or more **input [topics](reference-terminology.md#topic)**. Every time a message is received, the function does the following things:
   * Apply some processing logic to the input and write output to:
     * An **output topic** in Pulsar
     * [Apache BookKeeper](#state-storage)
@@ -69,7 +67,7 @@ If you were to implement the classic word count example using Pulsar Functions, 
 
 ![Pulsar Functions word count example](assets/pulsar-functions-word-count.png)
 
-If you were writing the function in [Java](functions-api.md#functions-for-java) using the [Pulsar Functions SDK for Java](functions-api.md#java-sdk-functions), you could write the function like below:
+If you were writing the function in [Java](functions-api.md#functions-for-java) using the [Pulsar Functions SDK for Java](functions-api.md#java-sdk-functions), you can write the function as follows:
 
 ```java
 package org.example.functions;
@@ -92,8 +90,8 @@ public class WordCountFunction implements Function<String, Void> {
 }
 ```
 
-Next, you need to bundle and build the jar file to be deployed, the approaches can be found in ["Creating an Uber JAR"](#creating-an-uber-jar) and ["Creating a NAR package"](#creating-a-nar-package).
-Then [deploy it](#cluster-run-mode) in your Pulsar cluster using the [command line](#command-line-interface) like below:
+Next, you need to bundle and build the jar file to be deployed, the approaches can be found in [Creating an Uber JAR](#creating-an-uber-jar) and [Creating a NAR package](#creating-a-nar-package).
+Then [deploy it](#cluster-run-mode) in your Pulsar cluster using the [command line](#command-line-interface) as follows:
 
 ```bash
 $ bin/pulsar-admin functions create \
@@ -108,13 +106,13 @@ $ bin/pulsar-admin functions create \
 
 ### Content-based routing example
 
-The use cases for Pulsar Functions are essentially endless, but let's dig into a more sophisticated example that involves content-based routing.
+Pulsar Functions are used in many scenarios. We can dig into a more sophisticated example that involves content-based routing.
 
-Imagine a function that takes items (strings) as input and publishes them to either a fruits or vegetables topic, depending on the item. Or, if an item is neither a fruit nor a vegetable, a warning is logged to a [log topic](#logging). Here's a visual representation:
+Imagine a function that takes items (strings) as input and publishes them to either fruits or vegetables topic, depending on the item. If an item is neither fruit nor vegetable, a warning is logged to a [log topic](#logging). The following is a visual representation:
 
 ![Pulsar Functions routing example](assets/pulsar-functions-routing-example.png)
 
-If you were implementing this routing functionality in Python, it might look something like this:
+If you implement the routing functionality in Python, it looks something like this:
 
 ```python
 from pulsar import Function
@@ -142,7 +140,7 @@ class RoutingFunction(Function):
 
 ## Command-line interface
 
-Pulsar Functions are managed using the [`pulsar-admin`](reference-pulsar-admin.md) CLI tool (in particular the [`functions`](reference-pulsar-admin.md#functions) command). Here's an example command that would run a function in [local run mode](#local-run-mode):
+Pulsar Functions are managed using the [`pulsar-admin`](reference-pulsar-admin.md) CLI tool (in particular the [`functions`](reference-pulsar-admin.md#functions) command). The following is a command example that runs a function in [local run mode](#local-run-mode):
 
 ```bash
 $ bin/pulsar-admin functions localrun \
@@ -154,29 +152,29 @@ $ bin/pulsar-admin functions localrun \
 
 ## Fully Qualified Function Name (FQFN)
 
-Each Pulsar Function has a **Fully Qualified Function Name** (FQFN) that consists of three elements: the function's tenant, namespace, and function name. FQFN's look like this:
+Each of Pulsar Functions has a **Fully Qualified Function Name** (FQFN) that consists of three elements: the function tenant, namespace, and function name. FQFN looks like this:
 
 ```http
 tenant/namespace/name
 ```
 
-FQFNs enable you to, for example, create multiple functions with the same name provided that they're in different namespaces.
+FQFNs enable you to, for example, create multiple functions with the same name provided that they are in different namespaces.
 
 ## Configuration
 
-Pulsar Functions can be configured in two ways:
+You can configure Pulsar Functions in two ways:
 
 * Via [command-line arguments](#command-line-interface) passed to the [`pulsar-admin functions`](reference-pulsar-admin.md#functions) interface
 * Via [YAML](http://yaml.org/) configuration files
 
-If you're supplying a YAML configuration, you must specify a path to the file on the command line. Here's an example:
+If you supply a YAML configuration, specify a path to the file on the command line. The following is an example:
 
 ```bash
 $ bin/pulsar-admin functions create \
   --function-config-file ./my-function.yaml
 ```
 
-And here's an example `my-function.yaml` file:
+The following is an example of the `my-function.yaml` file:
 
 ```yaml
 name: my-function
@@ -193,18 +191,18 @@ You can also mix and match configuration methods by specifying some function att
 
 ## Supported languages
 
-Pulsar Functions can currently be written in [Java](functions-api.md#functions-for-java) and [Python](functions-api.md#functions-for-python). Support for additional languages is coming soon.
+Currently, Pulsar Functions support [Java](functions-api.md#functions-for-java) and [Python](functions-api.md#functions-for-python). Other programming language will be supported soon with your contribution.
+ 
+## Pulsar Functions API
 
-## The Pulsar Functions API
-
-The Pulsar Functions API enables you to create processing logic that is:
+Pulsar Functions API enables you to create processing logic that is:
 
 * Type safe. Pulsar Functions can process raw bytes or more complex, application-specific types.
-* Based on SerDe (**Ser**ialization/**De**serialization). A variety of types are supported "out of the box" but you can also create your own custom SerDe logic.
+* Based on SerDe (**Ser**ialization/**De**serialization). A variety of types are supported "out of the box", yet you can also create your own custom SerDe logic.
 
 ### Function context
 
-Each Pulsar Function created using the [Pulsar Functions SDK](#the-pulsar-functions-sdk) has access to a context object that both provides:
+Pulsar Functions created using the [Pulsar Functions SDK](#the-pulsar-functions-sdk) have access to a context object that provides:
 
 1. A wide variety of information about the function, including:
   * The name of the function
@@ -220,7 +218,7 @@ Both Java and Python support writing "native" functions, i.e. Pulsar Functions w
 
 The benefit of native functions is that they don't have any dependencies beyond what's already available in Java/Python "out of the box." The downside is that they don't provide access to the function's [context](#function-context), which is necessary for a variety of functionality, including [logging](#logging), [user configuration](#user-configuration), and more.
 
-## The Pulsar Functions SDK
+## Pulsar Functions SDK
 
 If you'd like a Pulsar Function to have access to a [context object](#function-context), you can use the **Pulsar Functions SDK**, available for both [Java](functions-api.md#functions-for-java) and [Python](functions-api.md#functions-for-python).
 
