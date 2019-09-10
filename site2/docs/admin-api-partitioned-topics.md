@@ -4,8 +4,9 @@ title: Managing partitioned topics
 sidebar_label: Partitioned topics
 ---
 
+## Partitioned topics resources
 
-You can use Pulsar's [admin API](admin-api-overview.md) to create and manage partitioned topics.
+You can use Pulsar [admin API](admin-api-overview.md) to create and manage partitioned topics.
 
 In all of the instructions and commands below, the topic name structure is:
 
@@ -13,28 +14,26 @@ In all of the instructions and commands below, the topic name structure is:
 persistent://tenant/namespace/topic
 ```
 
-## Partitioned topics resources
-
 ### Create
 
-Partitioned topics in Pulsar must be explicitly created. When creating a new partitioned topic you
-need to provide a name for the topic as well as the desired number of partitions.
+Partitioned topics in Pulsar must be explicitly created. When creating a new partitioned topic, you
+need to specify the topic name and the number of partitions.
 
 > #### Note
 >
-> By default, after 60 seconds of creation, topics are considered inactive and deleted automatically to prevent from generating trash data.
+> By default, after 60 seconds of creation, topics are inactive and deleted automatically to prevent from generating trash data.
 >
-> To disable this feature, set `brokerDeleteInactiveTopicsEnabled`  to `false`.
+> To disable this feature, set `brokerDeleteInactiveTopicsEnabled` to `false`.
 >
-> To change the frequency of checking inactive topics, set `brokerDeleteInactiveTopicsFrequencySeconds` to your desired value.
+> To change the frequency of checking inactive topics, you can specify a value for `brokerDeleteInactiveTopicsFrequencySeconds`.
 >
-> For more information about these two parameters, see [here](reference-configuration.md#broker).
+> For more information about the two parameters, see [here](reference-configuration.md#broker).
 
 #### pulsar-admin
 
-You can create partitioned topics using the [`create-partitioned-topic`](reference-pulsar-admin.md#create-partitioned-topic)
-command and specifying the topic name as an argument and the number of partitions using the `-p` or `--partitions` flag.
-Here's an example:
+You can create partitioned topics by using the [`create-partitioned-topic`](reference-pulsar-admin.md#create-partitioned-topic)
+command, specify the topic name as an argument, and specify the number of partitions using the `-p` or `--partitions` flag.
+The following is an example:
 
 ```shell
 $ bin/pulsar-admin topics create-partitioned-topic \
@@ -52,43 +51,6 @@ $ bin/pulsar-admin topics create-partitioned-topic \
 String topicName = "persistent://my-tenant/my-namespace/my-topic";
 int numPartitions = 4;
 admin.persistentTopics().createPartitionedTopic(topicName, numPartitions);
-```
-
-## Nonpartitioned topics resources
-
-### Create
-
-Nonpartitioned topics in Pulsar must be explicitly created if allowAutoTopicCreation or createIfMissing is disabled.
-When creating a non-partitioned topic, you need to provide a topic name.
-
-> #### Note
->
-> By default, after 60 seconds of creation, topics are considered inactive and deleted automatically to prevent from generating trash data.
->
-> To disable this feature, set `brokerDeleteInactiveTopicsEnabled` to `false`.
->
-> To change the frequency of checking inactive topics, set `brokerDeleteInactiveTopicsFrequencySeconds` to your desired value.
->
-> For more information about these two parameters, see [here](reference-configuration.md#broker).
-
-#### pulsar-admin
-
-You can create non-partitioned topics using the [`create`](reference-pulsar-admin.md#create)
-command and specifying the topic name as an argument. This is an example command:
-
-```shell
-$ bin/pulsar-admin topics create persistent://my-tenant/my-namespace/my-topic
-``` 
-
-#### REST API
-
-{@inject: endpoint|PUT|admin/v2/persistent/:tenant/:namespace/:topic|operation/createNonPartitionedTopic}
-
-#### Java
-
-```java
-String topicName = "persistent://my-tenant/my-namespace/my-topic";
-admin.topics().createNonPartitionedTopic(topicName);
 ```
 
 ### Get metadata
@@ -202,7 +164,7 @@ admin.persistentTopics().getList(namespace);
 
 ### Stats
 
-It shows current statistics of a given partitioned topic. Here's an example payload:
+It shows current statistics of a given partitioned topic. The following is a payload example.
 
 ```json
 {
@@ -357,8 +319,8 @@ It shows detailed statistics of a topic.
 
 #### pulsar-admin
 
-The internal stats for the partitioned topic can be fetched by using the
-[`stats-internal`](reference-pulsar-admin.md#stats-internal) command, specifying the topic by name:
+You can fetch the internal stats of the partitioned topic by using the
+[`stats-internal`](reference-pulsar-admin.md#stats-internal) command, and specify the topic by name.
 
 ```shell
 $ pulsar-admin topics stats-internal \
@@ -374,3 +336,44 @@ $ pulsar-admin topics stats-internal \
 ```java
 admin.persistentTopics().getInternalStats(persistentTopic);
 ```
+
+## Nonpartitioned topics resources
+
+### Create
+
+Nonpartitioned topics in Pulsar must be explicitly created if allowAutoTopicCreation or createIfMissing is disabled.
+When creating a non-partitioned topic, you need to specify a topic name.
+
+> #### Note
+>
+> By default, after 60 seconds of creation, topics are considered inactive and deleted automatically to prevent from generating trash data.
+>
+> To disable this feature, set `brokerDeleteInactiveTopicsEnabled` to `false`.
+>
+> To change the frequency of checking inactive topics, set `brokerDeleteInactiveTopicsFrequencySeconds` to a specified value.
+>
+> For more information about these two parameters, see [here](reference-configuration.md#broker).
+
+#### pulsar-admin
+
+You can create non-partitioned topics using the [`create`](reference-pulsar-admin.md#create)
+command and specifying the topic name as an argument. This is an example command:
+
+```shell
+$ bin/pulsar-admin topics create persistent://my-tenant/my-namespace/my-topic
+``` 
+
+#### REST API
+
+{@inject: endpoint|PUT|admin/v2/persistent/:tenant/:namespace/:topic|operation/createNonPartitionedTopic}
+
+#### Java
+
+```java
+String topicName = "persistent://my-tenant/my-namespace/my-topic";
+admin.topics().createNonPartitionedTopic(topicName);
+```
+
+### Delete
+
+### List
