@@ -1,22 +1,19 @@
 ---
 id: client-libraries-go
-title: The Pulsar Go client
+title: Pulsar Go client
 sidebar_label: Go
 ---
 
-The Pulsar Go client can be used to create Pulsar [producers](#producers), [consumers](#consumers), and [readers](#readers) in Go (aka Golang).
+You can use Pulsar Go client to create Pulsar [producers](#producers), [consumers](#consumers), and [readers](#readers) in Go (aka Golang).
 
-> #### API docs available as well
-> For standard API docs, consult the [Godoc](https://godoc.org/github.com/apache/pulsar/pulsar-client-go/pulsar).
+> For standard API docs, refer to [Godoc](https://godoc.org/github.com/apache/pulsar/pulsar-client-go/pulsar).
 
-
-## Installation
+## Install
 
 ### Requirements
 
 Pulsar Go client library is based on the C++ client library. Follow
-the instructions for [C++ library](client-libraries-cpp.md) for installing the binaries
-through [RPM](client-libraries-cpp.md#rpm), [Deb](client-libraries-cpp.md#deb) or [Homebrew packages](client-libraries-cpp.md#macos).
+the instructions for [C++ library](client-libraries-cpp.md) for installing the binaries through [RPM](client-libraries-cpp.md#rpm), [Deb](client-libraries-cpp.md#deb) or [Homebrew packages](client-libraries-cpp.md#macos).
 
 ### Installing go package
 
