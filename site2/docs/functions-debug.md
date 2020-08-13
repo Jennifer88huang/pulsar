@@ -37,8 +37,8 @@ public class JavaNativeExclamationFunction implements Function<String, String> {
 
 You can write a simple unit test to test Pulsar Function.
 
-> #### Tip
-> Pulsar uses testng for testing.
+> Tip
+> Pulsar uses [TestNG](https://testng.org/doc/) for testing.
 
 ```java
 @Test
@@ -65,8 +65,8 @@ public class ExclamationFunction implements Function<String, String> {
 
 In this situation, you can write a unit test for this function as well. Remember to mock the `Context` parameter. The following is an example.
 
-> #### Tip
-> Pulsar uses testng for testing.
+> Tip
+> Pulsar uses [TestNG](https://testng.org/doc/) for testing.
 
 ```java
 @Test
@@ -83,7 +83,7 @@ When you run a Pulsar Function in localrun mode, it launches an instance of the 
 In this mode, a Pulsar Function consumes and produces actual data to a Pulsar cluster, and mirrors how the function actually runs in a Pulsar cluster.
 
 > Note  
-> Currently, debugging with localrun mode is only supported by Pulsar Functions written in Java. You need Pulsar version 2.4.0 or later to do the following. Even though localrun is available in versions earlier than Pulsar 2.4.0, you cannot debug with localrun mode programmatically or run Functions as threads.
+> Currently, debugging with localrun mode is supported by Pulsar Functions written in Java, Python and Go. You need Pulsar version 2.4.0 or later to do the following. Even though localrun is available in versions earlier than Pulsar 2.4.0, you cannot debug with localrun mode programmatically or run Functions as threads.
 
 You can launch your function in the following manner.
 
@@ -146,7 +146,7 @@ In Pulsar Functions, you can generate log information defined in functions to a 
 
 ![Pulsar Functions core programming model](assets/pulsar-functions-overview.png)
 
-**Example** 
+The following is an example of using log topic in Java.
 
 ```java
 import org.apache.pulsar.functions.api.Context;
