@@ -1,11 +1,29 @@
 {
   "docs": {
-    "Get started": [
+    "Get started0": [
       "pulsar-2.0",
+      {
+        "type": "subcategory",
+        "label": "Pulsar Schema",
+        "ids": [
+          "standalone",
+          "pulsar-2.0"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Functions",
+        "ids": [
+          "pulsar-2.0"
+        ]
+      },
+      "pulsar-2.0",
+      "pulsar-2.0"
+    ],
+    "Get started": [
       "standalone",
       "standalone-docker",
-      "kubernetes-helm",
-      "client-libraries"
+      "kubernetes-helm"
     ],
     "Concepts and Architecture": [
       "concepts-overview",
