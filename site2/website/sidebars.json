@@ -28,6 +28,20 @@
           "window-functions-context"
         ]
       },
+      {
+        "type": "subcategory",
+        "label": "Pulsar IO",
+        "ids": [
+          "io-overview",
+          "io-quickstart",
+          "io-use",
+          "io-debug",
+          "io-connectors",
+          "io-cdc",
+          "io-develop",
+          "io-cli"
+        ]
+      },
       "concepts-multi-tenancy",
       "concepts-replication"
     ],
@@ -43,28 +57,6 @@
       "concepts-authentication",
       "concepts-topic-compaction",
       "concepts-proxy-sni-routing"
-    ],
-
-    "Pulsar Functions": [
-      "functions-overview",
-      "functions-worker",
-      "functions-runtime",
-      "functions-develop",
-      "functions-package",
-      "functions-debug",
-      "functions-deploy",
-      "functions-cli",
-      "window-functions-context"
-    ],
-    "Pulsar IO": [
-      "io-overview",
-      "io-quickstart",
-      "io-use",
-      "io-debug",
-      "io-connectors",
-      "io-cdc",
-      "io-develop",
-      "io-cli"
     ],
     "Pulsar SQL": [
       "sql-overview",
