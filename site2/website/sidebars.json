@@ -1,24 +1,25 @@
 {
   "docs": {
-    "Get started0": [
+    "About Apache Pulsar": [
       "pulsar-2.0",
+      "helm-upgrade",
       {
         "type": "subcategory",
-        "label": "Pulsar Schema",
+        "label": "Kubernetes",
         "ids": [
-          "standalone",
-          "pulsar-2.0"
+          "helm-overview",
+          "helm-tools"
         ]
       },
       {
         "type": "subcategory",
         "label": "Functions",
         "ids": [
-          "pulsar-2.0"
+          "helm-deploy"
         ]
       },
-      "pulsar-2.0",
-      "pulsar-2.0"
+      "helm-prepare",
+      "helm-install"
     ],
     "Get started": [
       "standalone",
@@ -75,14 +76,6 @@
      "tiered-storage-gcs",
      "tiered-storage-filesystem"
   ],
-    "Kubernetes (Helm)": [
-      "helm-overview",
-      "helm-prepare",
-      "helm-install",
-      "helm-deploy",
-      "helm-upgrade",
-      "helm-tools"
-    ],
     "Deployment": [
       "deploy-aws",
       "deploy-kubernetes",
