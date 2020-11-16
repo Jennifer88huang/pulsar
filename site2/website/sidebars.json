@@ -15,31 +15,12 @@
       },
       {
         "type": "subcategory",
-        "label": "Pulsar Functions",
+        "label": "Pulsar SQL",
         "ids": [
-          "functions-overview",
-          "functions-worker",
-          "functions-runtime",
-          "functions-develop",
-          "functions-package",
-          "functions-debug",
-          "functions-deploy",
-          "functions-cli",
-          "window-functions-context"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Pulsar IO",
-        "ids": [
-          "io-overview",
-          "io-quickstart",
-          "io-use",
-          "io-debug",
-          "io-connectors",
-          "io-cdc",
-          "io-develop",
-          "io-cli"
+          "sql-overview",
+          "sql-getting-started",
+          "sql-deployment-configurations",
+          "sql-rest-api"
         ]
       },
       "concepts-multi-tenancy",
