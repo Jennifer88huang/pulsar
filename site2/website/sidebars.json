@@ -1,25 +1,35 @@
 {
   "docs": {
     "About Apache Pulsar": [
-      "pulsar-2.0",
-      "helm-upgrade",
+      "concepts-overview",
+      "concepts-architecture-overview",
       {
         "type": "subcategory",
-        "label": "Kubernetes",
+        "label": "Pulsar Schema",
         "ids": [
-          "helm-overview",
-          "helm-tools"
+          "schema-get-started",
+          "schema-understand",
+          "schema-evolution-compatibility",
+          "schema-manage"
         ]
       },
       {
         "type": "subcategory",
-        "label": "Functions",
+        "label": "Pulsar Functions",
         "ids": [
-          "helm-deploy"
+          "functions-overview",
+          "functions-worker",
+          "functions-runtime",
+          "functions-develop",
+          "functions-package",
+          "functions-debug",
+          "functions-deploy",
+          "functions-cli",
+          "window-functions-context"
         ]
       },
-      "helm-prepare",
-      "helm-install"
+      "concepts-multi-tenancy",
+      "concepts-replication"
     ],
     "Get started": [
       "standalone",
@@ -29,20 +39,12 @@
     "Concepts and Architecture": [
       "concepts-overview",
       "concepts-messaging",
-      "concepts-architecture-overview",
       "concepts-clients",
-      "concepts-replication",
-      "concepts-multi-tenancy",
       "concepts-authentication",
       "concepts-topic-compaction",
       "concepts-proxy-sni-routing"
     ],
-    "Pulsar Schema": [
-      "schema-get-started",
-      "schema-understand",
-      "schema-evolution-compatibility",
-      "schema-manage"
-    ],
+
     "Pulsar Functions": [
       "functions-overview",
       "functions-worker",
